@@ -1,7 +1,7 @@
 import donationPoint from '../fixtures/donationPoint.json'
 
 describe('Formulário de Ponto de Doação', () => {
-
+//a
   beforeEach(() => {
     cy.visit('/signup')
     cy.contains('h1', 'Cadastro de ponto de doação').should('be.visible')
