@@ -27,7 +27,7 @@ A automação foca nos fluxos críticos de conversão do usuário:
 
 ---
 
-## 🛠️ Destaques Técnicos (Para Recrutadores)
+## 🛠️ Destaques Técnicos 
 
 Aqui estão as principais estratégias de engenharia de software aplicadas neste projeto:
 
