@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test:cycloud": "npx cypress run --record --key 427c881a-a3ad-42f7-b321-e69b2cd2a727"
+    "test:cycloud": "npx cypress run --record --key 6aec6425-e844-4e1e-b3ec-6df5582a8243"
   },
   "keywords": [],
   "author": "",
