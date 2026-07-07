@@ -32,17 +32,17 @@ A automação foca nos fluxos críticos de conversão do usuário:
 Aqui estão as principais estratégias de engenharia de software aplicadas neste projeto:
 
 1.  **Design Pattern & Abstração:**
-    * Uso de **Custom Commands** (`/support/commands.js`) para encapsular lógicas repetitivas (ex: `fillDonationForm`), tornando os testes mais limpos e legíveis.
+    * Uso de **Custom Commands** (`cypress/support/commands.js`) para encapsular lógicas repetitivas (ex: `fillDonationForm`), tornando os testes mais limpos e legíveis.
     
 2.  **Gestão de Massa de Dados (Fixtures):**
-    * Separação completa entre lógica de teste e dados utilizando arquivos `.json` na pasta `fixtures`. Isso facilita a manutenção e permite testes com diferentes sets de dados sem alterar o código.
+    * Separação completa entre lógica de teste e dados utilizando arquivos `.json` na pasta `cypress/fixtures`. Isso facilita a manutenção e permite testes com diferentes sets de dados sem alterar o código.
 
 3.  **Network Stubbing (Mocking de API):**
     * Utilização do `cy.intercept` para controlar a requisição à API externa de CEP (`viacep.com.br`).
     * *Por que isso é importante?* Isso remove a dependência de serviços de terceiros, evita "flaky tests" (testes intermitentes) caso a API caia e torna a execução muito mais rápida.
 
 4.  **CI/CD Pipeline (GitHub Actions):**
-    * Configuração de workflow automatizado (`cypress.yml`) que executa os testes a cada push ou disparo manual.
+    * Configuração de workflow automatizado (`.github/workflows/cypress.yml`) que executa os testes a cada push ou disparo manual.
     * **Estratégia de Matriz:** Execução paralela em múltiplos navegadores (**Chrome e Firefox**) para garantir compatibilidade cross-browser.
     * Integração com **Cypress Cloud** para gravação de vídeos e relatórios de execução.
 
@@ -60,6 +60,40 @@ Siga os passos abaixo para executar a suíte de testes em sua máquina.
 Clone o repositório e instale as dependências:
 
 ```bash
-git clone [https://github.com/seu-usuario/petlov-cypress.git](https://github.com/seu-usuario/petlov-cypress.git)
-cd petlov-cypress
+git clone https://github.com/DouglasAntoni0/petlov.git
+cd petlov
 npm install
+```
+
+### 2. Execução local
+
+Abra o Cypress em modo interativo:
+
+```bash
+npx cypress open
+```
+
+Execute a suíte em modo headless:
+
+```bash
+npx cypress run
+```
+
+### 3. Execução com Cypress Cloud
+
+Para gravar a execução no Cypress Cloud, defina a variável de ambiente `CYPRESS_RECORD_KEY` antes de rodar o script. Não mantenha a chave real versionada no repositório.
+
+PowerShell:
+
+```powershell
+$env:CYPRESS_RECORD_KEY="sua-chave-do-cypress-cloud"
+npm run test:cycloud
+```
+
+Bash:
+
+```bash
+CYPRESS_RECORD_KEY=sua-chave-do-cypress-cloud npm run test:cycloud
+```
+
+O script `test:cycloud` executa `cypress run --record` e espera que a chave seja fornecida pelo ambiente.
